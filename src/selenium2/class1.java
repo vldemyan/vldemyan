@@ -52,7 +52,7 @@ public class class1 {
 
         alertMessage = driver.switchTo().alert().getText();
         System.out.println(alertMessage);
-        if(alertMessage.equals("E-mail address is is wrong")){
+        if(alertMessage.equals("E-mail address is wrong")){
         	  System.out.println("Test3 passed");  
         } else {
         	System.out.println("Test3 failed"); 

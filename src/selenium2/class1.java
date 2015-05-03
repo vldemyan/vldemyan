@@ -9,8 +9,6 @@ public class class1 {
     public static void main(String[] args) {
         WebDriver driver = new FirefoxDriver();
         String baseUrl = "http://localhost/guestbook/index.html";
-        String tagName = "";
- 
         driver.get(baseUrl);
         String alertMessage = "";
         

@@ -1,4 +1,0 @@
-vldemyan
-========
-
-first repository

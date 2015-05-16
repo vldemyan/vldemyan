@@ -26,10 +26,11 @@ echo $la3_1
 echo $la3_2 
 la3=$la3_1'.'$la3_2
 echo $la3
-    
-mysql -uroot -e 'create database if not exists vld;
+
+sql='create database if not exists vld;
 use vld;
 create table if not exists la_info(date_time DATETIME,
 load_average1 float, load_average2 float, load_average3 float);
-insert into la_info values(NOW(), $la1, $la2, $la3);
-select * from la_info;' 
+insert into la_info values(NOW(), '$la1', '$la2', '$la3');
+select * from la_info;'    
+mysql -uroot -e "$sql"

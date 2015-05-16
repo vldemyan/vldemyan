@@ -13,6 +13,7 @@ echo $la1_2
 la1=$la1_1'.'$la1_2
 echo $la1
     
+#comment
     
 exit
 mysql -uroot -e 'create database if not exists vld;

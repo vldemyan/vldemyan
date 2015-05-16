@@ -12,8 +12,20 @@ echo $la1_1
 echo $la1_2 
 la1=$la1_1'.'$la1_2
 echo $la1
-    
-#comment
+
+la2_1=`echo $la2 | awk -F\, '{print $1}'`
+la2_2=`echo $la2 | awk -F\, '{print $2}'`
+echo $la2_1
+echo $la2_2 
+la2=$la2_1'.'$la2_2
+echo $la2
+
+la3_1=`echo $la3 | awk -F\, '{print $1}'`
+la3_2=`echo $la3 | awk -F\, '{print $2}'`
+echo $la3_1
+echo $la3_2 
+la3=$la3_1'.'$la3_2
+echo $la3
     
 exit
 mysql -uroot -e 'create database if not exists vld;

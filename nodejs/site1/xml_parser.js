@@ -4,38 +4,49 @@ var xmlFile = "1.xml";
 var fs = require('fs');
 var util = require('util');
 var data = fs.readFileSync(xmlFile);
+var resultArray = [];
+var requiredElements = ["day", "month"];
 
 parseString(data, {explicitCharkey : true}, function (err, result) {
-	console.log(util.inspect(result, false, null))
+    console.log(util.inspect(result, false, null))
     //console.dir(result);
-    parseXmlRecursive(result);
-
+    parseXmlRecursive(result, requiredElements);
+    console.log("resultArray " + util.inspect(resultArray, false, null));
+    var table = objToHtmlTable(resultArray);
+    console.log(table);
 
     console.log('Done');
 });
 
 
-function parseXmlRecursive(xmlObject) {
-	//console.log("length " + Object.keys(xmlObject).length);
-	//console.log("constructor " + xmlObject.constructor);
+function parseXmlRecursive(xmlObject, requiredElements) {
 
-	//if (Object.keys(xmlObject).length === 1) {
-	//	var key = Object.keys(xmlObject)[0];
-	//	console.log("key " + key);
-	//	console.log("value " + xmlObject[key]);
-	//}
-	
-	if (xmlObject.constructor == String) {
-		console.log(util.inspect(xmlObject, false, null));
-	} else {
-		for(var index in xmlObject) { 
-			if (xmlObject.constructor == Object) {
-				console.log("index " + index);
-			}
-			
-	    	//console.log("call recursive");
-		    parseXmlRecursive(xmlObject[index]); 
-		}
-	}
+    for(var index in xmlObject) {
+        if (xmlObject.constructor == Object) {
+            if (requiredElements.indexOf(index) > -1 ) {
+                resultArray.push({
+                    key : xmlObject[index][0]["$"]["name"],
+                    value : xmlObject[index][0]["_"]
+                });
+            }
+        }
 
+        if (xmlObject.constructor != String) {
+            parseXmlRecursive(xmlObject[index], requiredElements);
+        }
+    }
+}
+
+function objToHtmlTable(obj) {
+
+    var tbody = '<tbody id="tbody">';
+
+    for (var i = 0; i < obj.length; i++) {
+        var tr = "<tr>";
+        tr += "<td>" + obj[i].key + "</td>" + "<td>" + obj[i].value.toString() + "</td></tr>";
+        tbody += tr;
+    }
+
+    tbody += '</tbody>';
+    return '<table>' + tbody + '</table>';
 }

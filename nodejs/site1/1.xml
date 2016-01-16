@@ -1,0 +1,10 @@
+<weather>
+<day name="day">14</day>
+<month name="month">12</month>
+<year name="year">2012</year>
+<hour name="hour">11</hour>
+<minute name="minute">26</minute>
+<temp name="temperature">-20.0</temp>
+<wind name="wind">3.3</wind>
+<maxwind name="maxwind">5.2</maxwind>
+</weather>
